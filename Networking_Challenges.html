@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Networking Challenges</title>
+<style>
+:root{--blue:#002855;--green:#cce97f;--grey:#eef1f8;--white:#ffffff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--grey);color:var(--blue)}
+header{position:sticky;top:0;z-index:10;height:72px;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;box-shadow:0 6px 18px #00285522}
+.brand{font-weight:800;letter-spacing:.16em;font-size:1rem}
+.header-title{font-weight:650;font-size:.96rem}
+main{min-height:calc(100vh - 72px);display:grid;place-items:center;padding:40px 20px}
+.screen{display:none;width:min(920px,100%);min-height:65vh;align-items:center;justify-content:center;flex-direction:column;text-align:center}
+.screen.active{display:flex;animation:fade .35s ease}
+.network{width:126px;height:76px;margin-bottom:22px;color:var(--blue)}
+h1{font-size:clamp(2.1rem,6vw,4.7rem);line-height:.98;margin:0 0 22px;letter-spacing:-.045em}
+.lead{max-width:690px;font-size:clamp(1rem,2.2vw,1.25rem);line-height:1.55;margin:0 0 32px}
+button{border:2px solid var(--blue);border-radius:14px;padding:16px 24px;font:inherit;font-weight:800;letter-spacing:.025em;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;color:var(--blue);background:var(--white)}
+button:hover{transform:translateY(-2px);box-shadow:0 10px 22px #00285522}
+button:focus-visible{outline:4px solid var(--green);outline-offset:3px}
+.primary{background:var(--green)}
+.draw-button{width:min(430px,92vw);min-height:112px;border-radius:22px;font-size:clamp(1.2rem,3vw,1.75rem);box-shadow:0 14px 32px #00285524}
+.hint{margin-top:20px;font-size:.95rem}
+.card-wrap{width:min(780px,100%);perspective:1200px}
+.card{min-height:330px;background:var(--white);border:3px solid var(--blue);border-radius:26px;padding:clamp(30px,6vw,64px);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 22px 50px #00285520;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:13px;background:var(--green)}
+.card.deal{animation:deal .55s cubic-bezier(.2,.8,.2,1)}
+.eyebrow{font-size:.78rem;font-weight:900;letter-spacing:.15em;margin-bottom:22px}
+.challenge{font-size:clamp(1.45rem,4vw,2.35rem);font-weight:750;line-height:1.25;margin:0}
+.actions{display:flex;gap:14px;justify-content:center;margin-top:24px}
+.actions button{min-width:180px}
+.message{margin-top:24px;background:var(--green);border:2px solid var(--blue);border-radius:18px;padding:22px;font-size:clamp(1.05rem,2.5vw,1.3rem);font-weight:750;line-height:1.4;animation:fade .4s ease}
+.counter{margin-top:16px;font-size:.9rem;font-weight:700}
+.hidden{display:none!important}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes deal{0%{opacity:0;transform:translateX(55px) rotateY(-14deg) scale(.96)}100%{opacity:1;transform:none}}
+@media(max-width:600px){header{position:static;height:62px;padding:0 18px}.header-title{display:none}main{min-height:calc(100vh - 62px);padding:22px 14px}.screen{min-height:72vh}.card{min-height:360px;padding:36px 24px}.actions{width:100%;flex-direction:column}.actions button{width:100%}h1{font-size:2.55rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="brand">PRAXI</div><div class="header-title">Networking Challenges</div></header>
+<main>
+<section id="intro" class="screen active" aria-labelledby="main-title">
+<svg class="network" viewBox="0 0 126 76" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M10 59 Q35 13 63 50 Q90 10 116 56"/><path d="M10 59 L63 50 L116 56"/></g><g fill="#cce97f" stroke="#002855" stroke-width="3"><circle cx="10" cy="59" r="7"/><circle cx="40" cy="27" r="7"/><circle cx="63" cy="50" r="7"/><circle cx="91" cy="25" r="7"/><circle cx="116" cy="56" r="7"/></g></svg>
+<h1 id="main-title">Networking<br>Challenges</h1>
+<p class="lead">Pesca una sfida. Se non ti convince, pescane un’altra. Fermati quando trovi quella che vuoi davvero portare a termine.</p>
+<button class="primary" id="start">INIZIA</button>
+</section>
+<section id="draw" class="screen" aria-labelledby="draw-title">
+<svg class="network" viewBox="0 0 126 76" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M10 59 Q35 13 63 50 Q90 10 116 56"/><path d="M10 59 L63 50 L116 56"/></g><g fill="#cce97f" stroke="#002855" stroke-width="3"><circle cx="10" cy="59" r="7"/><circle cx="40" cy="27" r="7"/><circle cx="63" cy="50" r="7"/><circle cx="91" cy="25" r="7"/><circle cx="116" cy="56" r="7"/></g></svg>
+<h1 id="draw-title">Pronto a creare una nuova connessione?</h1>
+<button class="primary draw-button" id="drawBtn">PESCA UNA SFIDA</button>
+<p class="hint">Puoi pescare di nuovo finché non trovi la sfida giusta per te.</p>
+</section>
+<section id="challengeScreen" class="screen" aria-live="polite">
+<div class="card-wrap"><article class="card" id="card"><div class="eyebrow">LA TUA SFIDA</div><p class="challenge" id="challengeText"></p></article></div>
+<div class="actions" id="actions"><button id="again">PESCA ANCORA</button><button class="primary" id="like">MI PIACE</button></div>
+<div class="message hidden" id="message">Annota la sfida e impegnati a completarla prima del prossimo incontro!</div>
+<div class="counter" id="counter"></div>
+</section>
+</main>
+<script>
+const challenges=["Prendi un caffè con una persona con cui parli poco e scopri qualcosa del suo lavoro che non conoscevi.", "Pranza con una persona al di fuori della tua cerchia abituale.", "Offri 15 minuti del tuo tempo per aiutare un collega su qualcosa.", "Insegna a un collega un trucco, una scorciatoia o un metodo che ti fa risparmiare tempo.", "Scopri una competenza nascosta di una persona del team.", "Chiedi a un collega neo-assunto cosa ha notato dell’organizzazione che magari chi è lì da più tempo non vede più.", "Chiedi aiuto a una persona da cui pensi di poter imparare qualcosa.", "Condividi una risorsa utile, come un documento, un sito, un metodo o uno strumento, con una persona specifica, spiegandole perché hai pensato a lei.", "Prima di inviare una comunicazione importante, chiedi un parere a un collega con uno stile comunicativo diverso dal tuo.", "Coinvolgi una persona diversa dal solito in uno scambio informale su una pratica, una procedura o un problema.", "Chiedi a una persona con molta esperienza quale consiglio darebbe a chi inizia oggi.", "Racconta a un collega un errore da cui hai imparato qualcosa.", "Chiedi a una persona entrata più recentemente quale consiglio darebbe a chi lavora lì da molti anni.", "Chiedi a un collega di raccontarti una soluzione di cui va particolarmente fiero.", "Cambia posto durante una pausa o un pranzo per stare con persone diverse da quelle abituali.", "Scambia una buona pratica professionale con qualcuno di un’altra area o funzione.", "Prova intenzionalmente ad adattare il tuo stile comunicativo a quello di un collega e osserva cosa cambia.", "Chiedi a qualcuno con cui hai poche occasioni di confronto cosa vorrebbe conoscere meglio del tuo lavoro.", "Celebra un piccolo risultato di un collega che normalmente passerebbe inosservato.", "Offri un caffè o un tè a una persona con cui finora hai avuto solo rapporti formali."];
+let remaining=[], current=null, draws=0;
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function resetDeck(){remaining=challenges.map((_,i)=>i)}
+function pick(){
+ if(!remaining.length) resetDeck();
+ let pos=Math.floor(Math.random()*remaining.length), idx=remaining.splice(pos,1)[0];
+ if(challenges.length>1 && challenges[idx]===current) return pick();
+ current=challenges[idx]; draws++;
+ $('challengeText').textContent=current;
+ $('counter').textContent='Sfida pescata '+draws;
+ $('message').classList.add('hidden');$('actions').classList.remove('hidden');
+ const card=$('card');card.classList.remove('deal');void card.offsetWidth;card.classList.add('deal');
+ show('challengeScreen');
+}
+$('start').addEventListener('click',()=>show('draw'));
+$('drawBtn').addEventListener('click',pick);
+$('again').addEventListener('click',pick);
+$('like').addEventListener('click',()=>{$('actions').classList.add('hidden');$('message').classList.remove('hidden');$('counter').textContent='Sfida scelta';});
+resetDeck();
+</script>
+</body>
+</html>
